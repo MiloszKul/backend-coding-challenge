@@ -1,0 +1,25 @@
+{ message: 'cities data loaded',
+  level: 'info',
+  timestamp: '2019-03-04T06:14:10.450Z' }
+{ message: 'fuse enginer initiated',
+  level: 'info',
+  timestamp: '2019-03-04T06:14:10.454Z' }
+{ message: 'App Started On localhost:8000',
+  level: 'info',
+  timestamp: '2019-03-04T06:14:10.458Z' }
+{ message: 'req: undefined-2019-03-04T06:14:11.053Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:14:11.053Z' }
+{ message: 'req: undefined-2019-03-04T06:14:17.581Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:14:17.581Z' }
+{ message: 'req:undefined-2019-03-04T06:14:17.581Z error',
+  level: 'error',
+  timestamp: '2019-03-04T06:14:17.584Z' }
+{ status: 400,
+  message: 'Malformed request see expected schema',
+  level: 'error',
+  timestamp: '2019-03-04T06:14:17.585Z' }
+{ message: 'req: undefined-2019-03-04T06:14:20.818Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:14:20.819Z' }

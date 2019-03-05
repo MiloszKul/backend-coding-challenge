@@ -1,0 +1,12 @@
+{ message: 'cities data loaded',
+  level: 'info',
+  timestamp: '2019-03-04T06:23:18.929Z' }
+{ message: 'fuse enginer initiated',
+  level: 'info',
+  timestamp: '2019-03-04T06:23:18.933Z' }
+{ message: 'App Started On localhost:8000',
+  level: 'info',
+  timestamp: '2019-03-04T06:23:18.936Z' }
+{ message: 'req: undefined-2019-03-04T06:23:47.997Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:23:47.997Z' }

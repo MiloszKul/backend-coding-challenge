@@ -1,0 +1,24 @@
+{ message: 'cities data loaded',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:04.945Z' }
+{ message: 'fuse enginer initiated',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:04.949Z' }
+{ message: 'App Started On localhost:8000',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:04.953Z' }
+{ message: 'req: undefined-2019-03-04T06:22:05.691Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:05.692Z' }
+{ message: 'req: undefined-2019-03-04T06:22:22.396Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:22.396Z' }
+{ message: 'req: undefined-2019-03-04T06:22:27.271Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:27.271Z' }
+{ message: 'req: undefined-2019-03-04T06:22:34.018Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:34.018Z' }
+{ message: 'req: undefined-2019-03-04T06:22:38.206Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:22:38.206Z' }

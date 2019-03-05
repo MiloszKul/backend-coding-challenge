@@ -1,0 +1,31 @@
+{ message: 'cities data loaded',
+  level: 'info',
+  timestamp: '2019-03-04T06:17:14.952Z' }
+{ message: 'fuse enginer initiated',
+  level: 'info',
+  timestamp: '2019-03-04T06:17:14.958Z' }
+{ message: 'App Started On localhost:8000',
+  level: 'info',
+  timestamp: '2019-03-04T06:17:14.965Z' }
+{ message: 'req: undefined-2019-03-04T06:17:15.409Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:17:15.409Z' }
+{ message: 'req: undefined-2019-03-04T06:17:19.814Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:17:19.815Z' }
+{ message: 'req:undefined-2019-03-04T06:17:19.814Z error',
+  level: 'error',
+  timestamp: '2019-03-04T06:17:19.818Z' }
+{ status: 400,
+  message: 'Malformed request \'q\' parameter is required',
+  level: 'error',
+  timestamp: '2019-03-04T06:17:19.818Z' }
+{ message: 'req: undefined-2019-03-04T06:17:27.285Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:17:27.285Z' }
+{ message: 'req: undefined-2019-03-04T06:18:45.825Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:18:45.825Z' }
+{ message: 'req: undefined-2019-03-04T06:18:50.164Z',
+  level: 'info',
+  timestamp: '2019-03-04T06:18:50.164Z' }
