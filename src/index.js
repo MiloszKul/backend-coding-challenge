@@ -19,7 +19,7 @@ suggestionEngine.start();
 app.use('/api', api.router());
 
 //start the rest service
-app.listen(process.env.APPLICATION_PORT);
+app.listen(process.env.PORT);
 
 logger.info('App Started On localhost:' + process.env.PORT);
 
