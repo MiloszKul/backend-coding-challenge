@@ -1,7 +1,0 @@
-{ message: 'req:undefined-2019-03-04T06:14:17.581Z error',
-  level: 'error',
-  timestamp: '2019-03-04T06:14:17.584Z' }
-{ status: 400,
-  message: 'Malformed request see expected schema',
-  level: 'error',
-  timestamp: '2019-03-04T06:14:17.585Z' }

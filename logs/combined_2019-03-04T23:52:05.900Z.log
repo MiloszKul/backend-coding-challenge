@@ -1,9 +1,0 @@
-{ message: 'cities data loaded',
-  level: 'info',
-  timestamp: '2019-03-04T23:52:06.373Z' }
-{ message: 'fuse enginer initiated',
-  level: 'info',
-  timestamp: '2019-03-04T23:52:06.378Z' }
-{ message: 'App Started On localhost:8000',
-  level: 'info',
-  timestamp: '2019-03-04T23:52:06.382Z' }

@@ -1,7 +1,0 @@
-{ message: 'req:undefined-2019-03-04T06:41:12.134Z error',
-  level: 'error',
-  timestamp: '2019-03-04T06:41:12.136Z' }
-{ status: 400,
-  message: 'Malformed request \'q\' parameter is required',
-  level: 'error',
-  timestamp: '2019-03-04T06:41:12.137Z' }
