@@ -21,7 +21,7 @@ app.use('/api', api.router());
 //start the rest service
 app.listen(process.env.APPLICATION_PORT);
 
-logger.info('App Started On localhost:' + process.env.APPLICATION_PORT);
+logger.info('App Started On localhost:' + process.env.PORT);
 
 //export the app module will be used for testing here
 module.exports = app;  

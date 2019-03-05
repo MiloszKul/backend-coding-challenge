@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "server.js",
   "engines": {
-    "node": "7.X"
+    "node": "8.X"
   },
   "scripts": {
     "dev": "nodemon --exec babel-node --presets env,stage-2 src/index.js",
