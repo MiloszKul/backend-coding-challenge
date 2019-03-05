@@ -9,7 +9,13 @@ var reqValidator = require('jsonschema').validate;
 const reqSchema = {
     'type': 'object',
     'properties': {
-        'q': { 'type': 'string'}
+        'q': { 'type': 'string'},
+        'latitude':{'type':'string'},
+        'longitude':{'type':'string'}
+    },
+    'dependencies': {
+        'longitude': ['latitude'],
+        'latitude': ['longitude']
     },
     'required': ['q']
 }
@@ -27,10 +33,11 @@ router.get('', function (req, res) {
         if (reqValidator(req.query, reqSchema).errors.length > 0) {
             const error = {
                 status: 400,
-                message: 'Malformed request \'q\' parameter is required'
+                message: 'Malformed request',
+                errors: reqValidator(req.query, reqSchema).errors.map((err)=>{return err.message})
             }
             res.status(400).send(error);
-            logger.error('req:' + reqId + ' error');
+            logger.error('req:' + reqId + ' error in request params');
             logger.error(error);
         } else{
             var matches = suggestionEngine.search(req.query);
