@@ -1,8 +1,16 @@
 language: node_js
 node_js:
-  - "8"
+- '8'
 install:
-  - npm install
+- npm install
 script:
-  - npm run build
-  - npm run test
+- npm run build
+- npm run test
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  api_key:
+    secure: YbltKt6sMQ75ZNnUbRnVFWZcJBjzy/CbZTSZwnqaz8dXg0AcFXD8YZmaQcT/77pTvVzg+GnvCJv/DGU0oOvrD7Lamxc8jpIubts41Kp1jAMseIMWLj0oCRI+6gBLxZKV1VvR0hNPPDTDezKDUVLlj1Jbk4uCz1iDSfT3gGMJAm+Z1ZyUJitiWvp5/usGzUMY9tZlr7blmEjplP8TY93408ro0Kg5fLQ3hEWcDphrRWfJ3HmW1a3EhAbDra6E+uLWkUyM96zdR1xHFw89cgHwpAsv/Zcf8SUvpxhY0ObovGDI8RwpAW5w6amZ2et812sPYTBj6lizIm2IiRZyTJtXvcfzCaMm/k/FBb1VYRmw2eyaHF/Rst1diA8G0uMsN9cRL1j0VJO5vqKXXCFCsPXy575mzz4EaUnrHqiuqGgE6Sc4hV9knCwbyRI+Co3PfSexz+wuLQWjRq9NvJN1z7RUQMA4EooA2nVreF/6i/spWpKP0CNoetvX/PnuKjBqESZyl6gVzphCZOUwauUq+2dhcflJRqZLJ+0J0QeE2jKJiaafEeJDEihb2T7p1yWMlwpgGJ296gSLpfyNf0Lvz7UwPxMSc/CBh4/v+6ELMD4neFOH0umDAI20scKeibr+Q8vaqBj1OUAAKcXvRqW/GIE8DL3ucBNmD+BzRbITqZ9cezI=
+  app: mk-coveo
+  on:
+    repo: MiloszKul/backend-coding-challenge
