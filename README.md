@@ -1,7 +1,7 @@
 ## Coveo Assignment REST Service
 
 application available at: 
-https://mk-coveo.herokuapp.comapi/suggestions?q=toronto
+https://mk-coveo.herokuapp.com/api/suggestions?q=toronto
 
 ### About the REST API
 
