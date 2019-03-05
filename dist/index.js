@@ -37,9 +37,9 @@ _suggestionEngine2.default.start();
 app.use('/api', _api2.default.router());
 
 //start the rest service
-app.listen(process.env.APPLICATION_PORT);
+app.listen(process.env.PORT);
 
-_logger2.default.info('App Started On localhost:' + process.env.APPLICATION_PORT);
+_logger2.default.info('App Started On localhost:' + process.env.PORT);
 
 //export the app module will be used for testing here
 module.exports = app;
