@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "nodemon --exec babel-node --presets env,stage-2 src/index.js",
     "build": "babel src --out-dir dist --presets env,stage-2",
-    "test": "mocha --reporter spec --recursive --exit",
+    "test": "NODE_ENV=test mocha --reporter spec --recursive --exit",
     "start": "node dist/index.js"
   },
   "dependencies": {

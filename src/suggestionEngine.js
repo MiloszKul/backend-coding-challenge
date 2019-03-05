@@ -5,14 +5,11 @@ import logger from './logger';
 
 var fuse;
 
-/**
- * 
- * suggestion engine used by the api. it isinitiated at start of the server to avoid i/o reads on each request
- * the engine uses the fuse.js library to compute scores which uses the bitap alogirthm for string matching
- * 
- */
-//fuse library settings
 
+//suggestion engine used by the api. it is initiated at start of the server to avoid i/o reads on each request
+//the engine uses the fuse.js library to compute scores which uses the bitap alogirthm for string matching
+
+//fuse settings searching on name, asci name and alternate names
 const fuseOptions = {
     threshold: 0.35,
     location: 0,
@@ -28,11 +25,7 @@ const fuseOptions = {
     ]
 };
 
-/*
-    calculate distance formula:
-    https://www.movable-type.co.uk/scripts/latlong.html
-
-*/
+//calculate distance formula: https://www.movable-type.co.uk/scripts/latlong.html
 const distanceInKM = (lat1,long1,lat2,long2) => {
     const R = 6371 // constant for distnace  6371 km from formula;
 
@@ -52,8 +45,8 @@ const distanceInKM = (lat1,long1,lat2,long2) => {
 const distScore = (distance) => {
     //largest distance would be opposite sides of equator or 12756 * pi / 2 = 20036km
     return 1 - Math.abs(distance)/20036;
-    
 }
+
 const adjustScore = (result, query) => {
     //note: fuse uses a 0 score for perfect 1 for mismatch hence score is always reverse at the end here 
     var score = 1 - result.score;
@@ -62,17 +55,15 @@ const adjustScore = (result, query) => {
     if (query.longitude && query.latitude) {
 
         var distance = distanceInKM(result.item.lat,result.item.long,query.latitude,query.longitude);
+        //end result is adjusted by distance multipligy it by distance score
         score *= distScore(distance);
 
     }
     return score;
 }
 
-/*
-    conversion of name to match specification format 
-    data set has canadian provinces as codes conversion available here, key # 6 does not exist this is not an error: http://download.geonames.org/export/dump/admin1CodesASCII.txt
-    us states given as plain text
-*/
+//conversion of name to match specification format 
+//data set has canadian provinces as codes conversion available here, key # 6 does not exist this is not an error: http://download.geonames.org/export/dump/admin1CodesASCII.txt
 const caProvincesMap = {
     1:'AB',
     2:'BC',
@@ -97,7 +88,7 @@ var suggestionEngine = {
         logger.info('cities data loaded');
 
         fuse = new Fuse(cities, fuseOptions);
-        logger.info('fuse enginer initiated');
+        logger.info('fuse engine initiated');
 
     },
     //perform search using fuse and adjust scores based on location if necessary 
@@ -110,6 +101,8 @@ var suggestionEngine = {
                 score: adjustScore(result, query)
             }
         })
+
+        logger.info('query: ' + query.q + ', results: ' + results.length);
 
         //return list of results sorted by score 
         return results.sort((rA, rB) => rB.score - rA.score);

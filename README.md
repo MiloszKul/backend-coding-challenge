@@ -1,90 +1,102 @@
-# Coveo Backend Coding Challenge
-(inspired by https://github.com/busbud/coding-challenge-backend-c)
+## Coveo Assignment REST Service
 
-## Requirements
+application available at: 
+https://mk-coveo.herokuapp.comapi/suggestions?q=toronto
 
-Design a REST API endpoint that provides auto-complete suggestions for large cities.
+### About the REST API
 
-- The endpoint is exposed at `/suggestions`
-- The partial (or complete) search term is passed as a querystring parameter `q`
-- The caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
-- The endpoint returns a JSON response with an array of scored suggested matches
-    - The suggestions are sorted by descending score
-    - Each suggestion has a score between 0 and 1 (inclusive) indicating confidence in the suggestion (1 is most confident)
-    - Each suggestion has a name which can be used to disambiguate between similarly named locations
-    - Each suggestion has a latitude and longitude
+The API is a simple implementation using express.js. While the current setup splitting the routes/server into multiple files is not necessary given the simplicity of the service for code maintainbilty and future extensions it is good practice.
 
-## "The rules"
+The suggestionEngine is setup as a seperate module exposing an interface to the actual API that uses it. This facilites future changes as if any changes where done to how the suggestions are obtained one would only not have to change anything inside the API itself.
 
-- *You can use the language and technology of your choosing.* It's OK to try something new (tell us if you do), but feel free to use something you're comfortable with. We don't care if you use something we don't; the goal here is not to validate your knowledge of a particular technology.
-- End result should be deployed on a public Cloud (Heroku, AWS etc. all have free tiers you can use).
+**Additional Notes:** 
 
-## Advice
+A logger was implemented for advanced logging as well as schema validation for put/post requests (see libraries below).
 
-- **Try to design and implement your solution as you would do for real production code**. Show us how you create clean, maintainable code that does awesome stuff. Build something that we'd be happy to contribute to. This is not a programming contest where dirty hacks win the game.
-- Documentation and maintainability are a plus, and don't you forget those unit tests.
-- We don’t want to know if you can do exactly as asked (or everybody would have the same result). We want to know what **you** bring to the table when working on a project, what is your secret sauce. More features? Best solution? Thinking outside the box?
+Schema validation for the request (ensuring the *q* parameter is present) was implemented via json schema 
 
-## Can I use a database?
+Since the idea was to approximate a production environment a travis configuration and extension was also doen to perform tests before building and deployments,
 
-If you wish, it's OK to use external systems such as a database, an Elastic index, etc. in your solution. But this is certainly not required to complete the basic requirements of the challenge. Keep in mind that **our goal here is to see some code of yours**; if you only implement a thin API on top of a DB we won't have much to look at.
+### Installation/ Running The Application
 
-Our advice is that if you choose to use an external search system, you had better be doing something really truly awesome with it.
+Node.js must be installed see Frameworks sections below
 
-## Sample responses
+First cd into the directory of this application.
 
-These responses are meant to provide guidance. The exact values can vary based on the data source and scoring algorithm
+To install the application run: `npm install`
 
-**Near match**
+To run the development version run: `npm run dev`
 
-    GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163
+This command runs the app using the nodemon library to reload each time source code is changed for development ease.
 
-```json
-{
-  "suggestions": [
-    {
-      "name": "London, ON, Canada",
-      "latitude": "42.98339",
-      "longitude": "-81.23304",
-      "score": 0.9
-    },
-    {
-      "name": "London, OH, USA",
-      "latitude": "39.88645",
-      "longitude": "-83.44825",
-      "score": 0.5
-    },
-    {
-      "name": "London, KY, USA",
-      "latitude": "37.12898",
-      "longitude": "-84.08326",
-      "score": 0.5
-    },
-    {
-      "name": "Londontowne, MD, USA",
-      "latitude": "38.93345",
-      "longitude": "-76.54941",
-      "score": 0.3
-    }
-  ]
-}
+To create a build (this is done during travis testing) run `npm run build`
+
+To run the application run `npm start`
+
+For testing run `npm test` (see below for details)
+
+### Implementation Structure
+
 ```
++-- dist //the final code that is ran on heroku (ignored from git)
++-- logs //logs folder is created after running the application 
+|   +-- combined_{{timestamp}}.log
+|   +-- error_{{timestamp}}.log
++-- src //source code
+|   +-- api
+|       +--suggestions
+|   +-- index.js
+|   +-- suggestionEngine.js
+|   +-- logger.js
++-- test //the tests using mocha
+|   +-- server-test.js
++-- .babelsrc
++-- .env //variables ignored
++-- .travis.yml travis config
++-- .package.json
 
-**No match**
-
-    GET /suggestions?q=SomeRandomCityInTheMiddleOfNowhere
-
-```json
-{
-  "suggestions": []
-}
 ```
+### Frameworks / libraires
 
-## References
+The application is build using Node.js to install node js please visit:
+[Node](https://nodejs.org/en/)
 
-- Geonames provides city lists Canada and the USA http://download.geonames.org/export/dump/readme.txt
+All other used libraries are publicly available on the npm registry here is a full list with short description:
 
-## Getting Started
+#### For the REST API:
 
-Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http://mac.github.com/) and
-[Windows](http://windows.github.com/) that make this easier.
+[Express JS](https://expressjs.com/) : standard web framework
+
+[Winston](https://www.npmjs.com/package/winston) : Advanced logging capability
+
+[jsonschema](https://www.npmjs.com/package/jsonschema) : json validation library
+
+[fuse.js](https://fusejs.io) : auto complete library for analyzing suggestions
+
+[Babel](https://babeljs.io) : transpiling/compilation of javascript
+
+[dotenv](https://www.npmjs.com/package/dotenv) : env file handling
+
+[body-parser](https://www.npmjs.com/package/body-parser) : put request handling in node
+
+#### For Testing
+
+[Mocha](https://mochajs.org) : testing framework
+
+[chai](https://www.chaijs.com) : test assertions
+
+[supertest](https://www.npmjs.com/package/supertest) : test framework helper
+
+### Testing Specification 
+
+All tests are included in the server-test.js file. please run `npm run build` before running test
+
+travis runs all included tests before deployment
+
+This is a script using the frameworks described above to automatically test http calls and their return values to point out any differences versus the expected values.
+
+Simple testing of this server can also be performed using [Postman](https://www.getpostman.com). The configured framework here allows to split tests into modules and run them automtically for automation and improved checking of the results.
+
+running `npm test` will run all configured tests according to specification and return any errors at the end 
+
+The test files could be split into several modules for easier test mainteance if this service was to be scaled similar to the api structure.

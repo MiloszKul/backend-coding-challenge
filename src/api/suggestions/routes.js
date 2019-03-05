@@ -3,8 +3,9 @@ import logger from '../../logger';
 import suggestionEngine from '../../suggestionEngine';
 const router = express.Router();
 
-//using jsonschema library to validate the input received on requests
+//using jsonschema library to validate the input received on put requests
 var reqValidator = require('jsonschema').validate;
+
 const reqSchema = {
     'type': 'object',
     'properties': {
@@ -15,28 +16,27 @@ const reqSchema = {
 
 //get method handle for returning event  with optional query eventName
 router.get('', function (req, res) {
-
+    
     //id for logging;
-    var reqId = req.headers.ip + '-' + new Date().toISOString();
-    logger.info('req: ' +reqId);
+    var reqId = req.ip + '-' + new Date().toISOString();
 
+    //log req
+    logger.info('new request req: ' +reqId);
     try {
-        //invalid request in this case the q parameter was not set
+        //validate the request body 
         if (reqValidator(req.query, reqSchema).errors.length > 0) {
             const error = {
                 status: 400,
                 message: 'Malformed request \'q\' parameter is required'
             }
-
             res.status(400).send(error);
             logger.error('req:' + reqId + ' error');
             logger.error(error);
-
-        //valid request processing
         } else{
             var matches = suggestionEngine.search(req.query);
+
             res.status(200).send({"suggestions":matches});
-            logger.info('req: ' +reqId + 'completed successfully');
+            logger.info('req:' + reqId + ' completed');
         }
     } catch (e) {
         res.status(500).send('Server Error');
